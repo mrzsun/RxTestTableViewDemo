@@ -16,6 +16,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let nav = UINavigationController(rootViewController: RxTableViewController())
+        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        window?.rootViewController = nav
+        window?.makeKeyAndVisible()
         return true
     }
 
