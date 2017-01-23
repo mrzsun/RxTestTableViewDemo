@@ -1,6 +1,6 @@
 //
 //  UISearchController+Rx.swift
-//  Rx
+//  RxCocoa
 //
 //  Created by Segii Shulga on 3/17/16.
 //  Copyright © 2016 Krunoslav Zaher. All rights reserved.
@@ -16,52 +16,46 @@ import Foundation
 #endif
     import UIKit
     
-extension UISearchController {
-    /**
-     Reactive wrapper for `delegate`.
-     For more information take a look at `DelegateProxyType` protocol documentation.
-     */
-    public var rx_delegate: DelegateProxy {
-        return proxyForObject(RxSearchControllerDelegateProxy.self, self)
+@available(iOS 8.0, *)
+extension Reactive where Base: UISearchController {
+    /// Reactive wrapper for `delegate`.
+    /// For more information take a look at `DelegateProxyType` protocol documentation.
+    public var delegate: DelegateProxy {
+        return RxSearchControllerDelegateProxy.proxyForObject(base)
     }
-    /**
-     Reactive wrapper for `delegate` message.
-     */
-    public var rx_didDismiss: Observable<Void> {
-        return rx_delegate
-            .observe(#selector(UISearchControllerDelegate.didDismissSearchController(_:)))
+
+    /// Reactive wrapper for `delegate` message.
+    public var didDismiss: Observable<Void> {
+        return delegate
+            .methodInvoked( #selector(UISearchControllerDelegate.didDismissSearchController(_:)))
             .map {_ in}
     }
-    /**
-     Reactive wrapper for `delegate` message.
-     */
-    public var rx_didPresent: Observable<Void> {
-        return rx_delegate
-            .observe(#selector(UISearchControllerDelegate.didPresentSearchController(_:)))
+
+    /// Reactive wrapper for `delegate` message.
+    public var didPresent: Observable<Void> {
+        return delegate
+            .methodInvoked(#selector(UISearchControllerDelegate.didPresentSearchController(_:)))
             .map {_ in}
     }
-    /**
-     Reactive wrapper for `delegate` message.
-     */
-    public var rx_present: Observable<Void> {
-        return rx_delegate
-            .observe(#selector(UISearchControllerDelegate.presentSearchController(_:)))
+
+    /// Reactive wrapper for `delegate` message.
+    public var present: Observable<Void> {
+        return delegate
+            .methodInvoked( #selector(UISearchControllerDelegate.presentSearchController(_:)))
             .map {_ in}
     }
-    /**
-     Reactive wrapper for `delegate` message.
-     */
-    public var rx_willDismiss: Observable<Void> {
-        return rx_delegate
-            .observe(#selector(UISearchControllerDelegate.willDismissSearchController(_:)))
+
+    /// Reactive wrapper for `delegate` message.
+    public var willDismiss: Observable<Void> {
+        return delegate
+            .methodInvoked(#selector(UISearchControllerDelegate.willDismissSearchController(_:)))
             .map {_ in}
     }
-    /**
-     Reactive wrapper for `delegate` message.
-     */
-    public var rx_willPresent: Observable<Void> {
-        return rx_delegate
-            .observe(#selector(UISearchControllerDelegate.willPresentSearchController(_:)))
+    
+    /// Reactive wrapper for `delegate` message.
+    public var willPresent: Observable<Void> {
+        return delegate
+            .methodInvoked( #selector(UISearchControllerDelegate.willPresentSearchController(_:)))
             .map {_ in}
     }
     
