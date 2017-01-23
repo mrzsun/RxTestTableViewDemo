@@ -22,7 +22,7 @@ class ViewModel: NSObject {
             let section = [SectionModel(model: "", items: users)]
             observer.onNext(section)
             observer.onCompleted()
-            return AnonymousDisposable{}
+            return Disposables.create()
         }
     }
     

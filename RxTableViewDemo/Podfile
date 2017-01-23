@@ -1,11 +1,11 @@
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, ‘8.1’
+#platform :ios, ‘8.1’
 use_frameworks!
 
 target:RxTableViewDemo do
-    pod 'RxSwift',    '~> 2.0' 
-    pod 'RxCocoa',    '~> 2.0'
-    pod 'RxDataSources', '~> 0.7'
+      pod 'RxSwift', '~> 3.1'
+      pod 'RxCocoa', '~> 3.1'
+      pod 'RxDataSources', '~> 1.0.0’
 end
 
 
